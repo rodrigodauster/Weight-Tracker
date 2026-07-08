@@ -6,19 +6,30 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            LogView()
+                .tabItem {
+                    Label("Log", systemImage: "square.and.pencil")
+                }
+
+            AnalyticsView()
+                .tabItem {
+                    Label("Analytics", systemImage: "chart.line.uptrend.xyaxis")
+                }
+            
+            DataView()
+                .tabItem {
+                    Label("Data", systemImage: "list.bullet")
+                }
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(for: WeightEntry.self, inMemory: true)
 }
